@@ -59,6 +59,12 @@ For project-only use, place the repository in `.agents/skills/preserve-task-goal
 - Use lightweight records only when complexity warrants them.
 - Check task identity separately from completeness: passing checks for a substitute task does not satisfy the agreed task.
 - Continue authorized, executable required work without waiting for repeated requests to continue; pause only with a concrete blocker or an explicit user instruction.
+- Recheck the original agreed goal plus explicitly approved changes at each turn, before adding a branch, and before delivery; do not rely only on the previous assistant plan.
+- Require new work to address a required deliverable, actual blocker, or directly relevant validation risk. A potentially useful addition is not automatically authorized.
+- Separate goal alignment, requirement coverage, real behavior, and evidence. Trace critical functions from the actual entry point to the delivered output.
+- Respect read-only and pause instructions; on resumption, check current conditions and retain requirements unaffected by an approved change.
+
+These are lightweight execution checks, not a requirement to create a report or rerun the entire test suite every turn. Conditional guidance is in [alignment and completion](references/alignment-and-completion.md).
 
 Keep standing project rules in `AGENTS.md`; use the skill for the workflow. An optional [AGENTS.md snippet](templates/AGENTS-snippet.md) is included. Installation does not edit existing instructions.
 
@@ -68,7 +74,7 @@ This is a procedural aid, not an enforcement engine or a guarantee of correctnes
 
 ## Evaluate actual behavior
 
-[Optional maintainer evaluations](evals/README.md) exercise complete delivery and partial blockers using isolated files. Their Python checker uses only the standard library and is not a runtime dependency. It checks outputs and preserved inputs; a maintainer must also review the agent's claims and scope choices. Passing these cases does not establish broad reliability or a measured improvement over a no-skill baseline.
+[Optional maintainer evaluations](evals/README.md) cover complete delivery, partial blockers, pause/resume with an approved change, and real parameter effects through the execution path. Their Python checkers use only the standard library and are not runtime dependencies. They check outputs and preserved inputs; a maintainer must also review actual actions, claims, and scope choices. See [recorded runs](evals/RESULTS.md) for version-specific evidence. Passing these cases does not establish broad reliability or a measured improvement over a no-skill baseline.
 
 ## License
 
