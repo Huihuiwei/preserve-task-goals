@@ -10,6 +10,22 @@
 
 仅把仓库下载到“下载”文件夹，不一定能被 Codex 自动发现。也不需要为了使用这个纯文本技能另外配置模型 API Key、显卡或 Python 环境；你只需要已经可以正常使用的 Codex。
 
+## 已有本地文件：离线安装到所有项目可用的位置
+
+Windows 用户可在本仓库文件夹中打开 PowerShell，执行：
+
+```powershell
+& .\scripts\install-local.ps1 -AddGlobalInstructions
+```
+
+脚本沿用本机内置安装器的目录约定：设置了 `CODEX_HOME` 时使用其 `skills` 子目录，否则使用 `%USERPROFILE%\.codex\skills\preserve-task-goals`。这属于当前 Windows 用户的个人安装，可在该用户的不同项目中使用，不是所有系统账户或 WSL 环境的共用安装。
+
+`-AddGlobalInstructions` 会先备份已有全局 `AGENTS.md`，再追加本技能的使用规则；明确允许调用这个 Skill，保留其他规则、项目约束与权限边界。不想追加全局规则时省略该参数。它不逐个改写项目文件，也不修改其他技能设置。
+
+该脚本不需要联网或管理员权限，但当前会话必须允许写入目标用户目录。遇到权限限制时使用正常的授权流程，或由你在本机 PowerShell 中手动运行；不要修改沙箱设置或关闭保护。脚本不修改 PowerShell 的执行策略。
+
+已有安装若内容相同可重复执行；若同名文件不同，脚本停止并要求先比较，不覆盖本地修改。输出中的 `DiscoveryVerified=false` 表示文件已核对，但仍需开启新 Codex 会话确认技能发现，不能把复制成功说成客户端已经加载。
+
 ## 方法一：直接让 Codex 安装（推荐）
 
 打开 Codex 对话，粘贴：

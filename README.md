@@ -29,6 +29,8 @@
 
 没有 `$skill-installer`、不会用 Git、需要 Windows/macOS/Linux 手动安装？看[新手安装教程](docs/installation.md)。
 
+已经有本地仓库的 Windows 用户，也可在仓库目录运行 `& .\scripts\install-local.ps1 -AddGlobalInstructions`，离线安装到个人技能目录并追加全局使用规则。脚本保留原指令、备份修改前文件，遇到不同的已有安装内容会停止。
+
 ## 主要解决什么问题
 
 | 问题 | 这个 Skill 要求代理做什么 |
@@ -84,7 +86,7 @@
 
 `AGENTS.md` 保存常驻规则；Skill 提供按需执行的方法。安装技能并不保证每轮都会自动调用，关键任务可以显式写 `$preserve-task-goals`。
 
-需要项目长期遵守的简短约束时，将 [templates/AGENTS-snippet.md](templates/AGENTS-snippet.md) 的内容合并到现有 `AGENTS.md`，保留原项目规则。仅安装本技能不会修改你的全局指令或项目配置。
+需要项目长期遵守的简短约束时，将 [templates/AGENTS-snippet.md](templates/AGENTS-snippet.md) 的内容合并到现有 `AGENTS.md`，保留原项目规则。默认安装只放置技能文件；本地安装脚本只有在你显式使用 `-AddGlobalInstructions` 时才追加全局规则，且不会改写各项目的配置。
 
 ## 文件说明
 
@@ -99,6 +101,7 @@
 | [references/alignment-and-completion.md](references/alignment-and-completion.md) | 每轮对齐、新增内容判断与实质完成核验 |
 | [templates/AGENTS-snippet.md](templates/AGENTS-snippet.md) | 可选的项目常驻规则 |
 | [docs/installation.md](docs/installation.md) | 新手安装、更新、移除与排障 |
+| [scripts/install-local.ps1](scripts/install-local.ps1) | Windows 本地离线安装，可选追加全局使用规则 |
 | [docs/examples.md](docs/examples.md) | 可直接复制的使用提示词 |
 | [evals/README.md](evals/README.md) | 维护者使用的实际行为验证方法 |
 

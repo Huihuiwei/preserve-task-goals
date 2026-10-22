@@ -47,6 +47,8 @@ If the destination already exists, inspect it instead of overwriting it. Some bu
 
 For project-only use, place the repository in `.agents/skills/preserve-task-goals` under that project. See the [detailed guide](docs/installation.md) for ZIP installation, updates, removal, and troubleshooting.
 
+Windows users with a local checkout can run `& .\scripts\install-local.ps1 -AddGlobalInstructions` from the repository directory. This offline installer follows the bundled installer's `$CODEX_HOME/skills` convention, defaulting to `%USERPROFILE%\.codex\skills`. The optional switch backs up and appends to global `AGENTS.md`; existing differing skill files are not overwritten. Installation applies to the current Windows user's projects, and a new Codex session must still confirm discovery. It does not change execution policies or sandbox permissions.
+
 ## Capabilities
 
 - Reconstruct agreed requirements without turning assistant suggestions into user approval.
@@ -66,11 +68,11 @@ For project-only use, place the repository in `.agents/skills/preserve-task-goal
 
 These are lightweight execution checks, not a requirement to create a report or rerun the entire test suite every turn. Conditional guidance is in [alignment and completion](references/alignment-and-completion.md).
 
-Keep standing project rules in `AGENTS.md`; use the skill for the workflow. An optional [AGENTS.md snippet](templates/AGENTS-snippet.md) is included. Installation does not edit existing instructions.
+Keep standing project rules in `AGENTS.md`; use the skill for the workflow. An optional [AGENTS.md snippet](templates/AGENTS-snippet.md) is included. Default installation only places files; explicitly passing `-AddGlobalInstructions` to the local installer backs up and appends global guidance without rewriting project rules.
 
 ## Limits
 
-This is a procedural aid, not an enforcement engine or a guarantee of correctness. There are no runtime scripts, background processes, or telemetry. The core instructions are in Chinese and direct the agent to respond in the user's language. Other SKILL.md-compatible hosts may use the content, but their discovery and invocation behavior must be verified separately.
+This is a procedural aid, not an enforcement engine or a guarantee of correctness. There are no task runtime scripts, background processes, or telemetry; installation and evaluation helpers run only when requested. The core instructions are in Chinese and direct the agent to respond in the user's language. Other SKILL.md-compatible hosts may use the content, but their discovery and invocation behavior must be verified separately.
 
 ## Evaluate actual behavior
 
