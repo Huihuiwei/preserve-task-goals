@@ -1,0 +1,4 @@
+interface:
+  display_name: "任务目标与证据约束"
+  short_description: "保持用户确认的任务范围，核对真实实现与验证证据，避免局部完成冒充整体交付"
+  default_prompt: "请使用 $preserve-task-goals 核对已确认的任务目标与实际进度，在原范围内推进工作，并用实际证据说明完成情况。"
