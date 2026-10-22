@@ -57,12 +57,18 @@ For project-only use, place the repository in `.agents/skills/preserve-task-goal
 - Report negative results, blockers, and missing evidence accurately.
 - Recover from task drift without discarding useful work.
 - Use lightweight records only when complexity warrants them.
+- Check task identity separately from completeness: passing checks for a substitute task does not satisfy the agreed task.
+- Continue authorized, executable required work without waiting for repeated requests to continue; pause only with a concrete blocker or an explicit user instruction.
 
 Keep standing project rules in `AGENTS.md`; use the skill for the workflow. An optional [AGENTS.md snippet](templates/AGENTS-snippet.md) is included. Installation does not edit existing instructions.
 
 ## Limits
 
 This is a procedural aid, not an enforcement engine or a guarantee of correctness. There are no runtime scripts, background processes, or telemetry. The core instructions are in Chinese and direct the agent to respond in the user's language. Other SKILL.md-compatible hosts may use the content, but their discovery and invocation behavior must be verified separately.
+
+## Evaluate actual behavior
+
+[Optional maintainer evaluations](evals/README.md) exercise complete delivery and partial blockers using isolated files. Their Python checker uses only the standard library and is not a runtime dependency. It checks outputs and preserved inputs; a maintainer must also review the agent's claims and scope choices. Passing these cases does not establish broad reliability or a measured improvement over a no-skill baseline.
 
 ## License
 
